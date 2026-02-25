@@ -2,6 +2,8 @@
 
 A FastAPI-based REST API for the job application tracking system.
 
+![feat](https://github.com/user-attachments/assets/e37fcf61-54d2-4010-b61c-9d97ceafcca8)
+
 ## Prerequisites
 
 - Python 3.10 or higher
