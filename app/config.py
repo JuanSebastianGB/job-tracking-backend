@@ -9,10 +9,8 @@ class Settings(BaseSettings):
 
     PORT: int = Field(default=3000, validation_alias="PORT")
     DATABASE_URL: Optional[str] = Field(default=None, validation_alias="DATABASE_URL")
-    DB_PATH: str = Field(default="../job-tracker/jobs.db", validation_alias="DB_PATH")
-    UPLOAD_DIR: str = Field(
-        default="../job-tracker/uploads", validation_alias="UPLOAD_DIR"
-    )
+    DB_PATH: str = Field(default="jobs.db", validation_alias="DB_PATH")
+    UPLOAD_DIR: str = Field(default="uploads", validation_alias="UPLOAD_DIR")
 
     @property
     def database_url(self) -> str:
