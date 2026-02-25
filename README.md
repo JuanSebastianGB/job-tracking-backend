@@ -170,6 +170,35 @@ FastAPI automatically generates interactive documentation:
 
 You can test all endpoints directly from the browser!
 
+## Tests
+
+The backend uses **pytest** with **pytest-asyncio** for unit and integration tests.
+
+```bash
+# Activate virtual environment first
+source .venv/bin/activate   # macOS/Linux
+# .venv\Scripts\activate    # Windows
+
+# Run all tests
+pytest
+
+# Run with verbose output
+pytest -v
+
+# Run only unit tests
+pytest tests/unit/
+
+# Run only integration tests
+pytest tests/integration/
+
+# Run with coverage (install pytest-cov first: pip install pytest-cov)
+pytest --cov=app --cov-report=term-missing
+```
+
+Test layout:
+- `tests/unit/` — Service and logic tests
+- `tests/integration/` — API endpoint tests
+
 ## Available Scripts
 
 ```bash
