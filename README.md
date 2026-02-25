@@ -2,6 +2,8 @@
 
 A FastAPI-based REST API for the job application tracking system.
 
+![feat](https://github.com/user-attachments/assets/e37fcf61-54d2-4010-b61c-9d97ceafcca8)
+
 [![Build](https://github.com/JuanSebastianGB/job-tracking-backend/actions/workflows/main.yml/badge.svg)](https://github.com/JuanSebastianGB/job-tracking-backend)
 [![FastAPI](https://img.shields.io/badge/FastAPI-0.109+-green?logo=fastapi)](https://fastapi.tiangolo.com)
 [![Python](https://img.shields.io/badge/Python-3.11+-blue?logo=python)](https://www.python.org)
