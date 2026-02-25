@@ -2,6 +2,10 @@
 
 A FastAPI-based REST API for the job application tracking system.
 
+[![Build](https://github.com/JuanSebastianGB/job-tracking-backend/actions/workflows/main.yml/badge.svg)](https://github.com/JuanSebastianGB/job-tracking-backend)
+[![FastAPI](https://img.shields.io/badge/FastAPI-0.109+-green?logo=fastapi)](https://fastapi.tiangolo.com)
+[![Python](https://img.shields.io/badge/Python-3.11+-blue?logo=python)](https://www.python.org)
+
 ## Prerequisites
 
 - Python 3.10 or higher
@@ -11,7 +15,7 @@ A FastAPI-based REST API for the job application tracking system.
 
 1. Navigate to the backend directory:
    ```bash
-   cd backend
+   cd job-tracking-backend
    ```
 
 2. Create a virtual environment:
@@ -124,11 +128,11 @@ Response: `{"url": "/uploads/filename.png"}`
 
 ## File Uploads
 
-Uploaded files are stored in `job-tracker/uploads/` and served at `/uploads/{filename}`.
+Uploaded files are stored in `job-tracking-backend/uploads/` and served at `/uploads/{filename}`.
 
 ## Development
 
-The backend connects to the same SQLite database (`job-tracker/jobs.db`) as the original Express server, so existing data will be accessible.
+The backend uses PostgreSQL (Neon Serverless) by default. Configure the connection via environment variables in `.env`.
 
 ## Troubleshooting
 
@@ -138,12 +142,12 @@ If port 3000 is in use, specify a different port:
 uvicorn app.main:app --reload --port 3001
 ```
 
-Then update the frontend proxy in `job-tracker/vite.config.ts` to point to the new port.
+Then update the frontend proxy in `job-tracking-frontend/vite.config.ts` to point to the new port.
 
 ### Database not found
-Ensure the database path in `.env` points to the correct location:
+Ensure the database URL in `.env` is correctly configured:
 ```
-DB_PATH=../job-tracker/jobs.db
+DATABASE_URL=postgresql+asyncpg://user:password@host.pooler.us-east-1.aws.neon.tech/dbname?sslmode=require
 ```
 
 ## Tech Stack
@@ -151,11 +155,7 @@ DB_PATH=../job-tracker/jobs.db
 | Category | Technology |
 |----------|------------|
 | Framework | FastAPI |
-| Language | Python |
-| Database | SQLite (sql.js) |
-| ORM | SQLAlchemy |
-| File Upload | FastAPI + multer |
-
-## Related Projects
-
-- [Frontend](../job-tracker/) - React frontend for the job tracking app
+| Language | Python 3.11+ |
+| Database | PostgreSQL (Neon Serverless) |
+| ORM | SQLAlchemy 2.0+ |
+| File Upload | FastAPI |
