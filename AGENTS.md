@@ -18,6 +18,7 @@ This file describes rules, patterns, and conventions for AI agents working on th
 | `backend-patterns` | Node.js/Express/FastAPI patterns | `.agents/skills/backend-patterns/SKILL.md` |
 | `docker-expert` | Containerization patterns | `.agents/skills/docker-expert/SKILL.md` |
 | `neon-postgres` | Neon Serverless Postgres patterns | `.agents/skills/neon-postgres/SKILL.md` |
+| `python-testing-patterns` | Implement comprehensive testing strategies with pytest, fixtures, mocking, and test-driven development. Use when writing Python tests, setting up test suites, or implementing testing best practices. | `.agents/skills/python-testing-patterns/SKILL.md` |
 | `git-commit` | Professional commit conventions | `~/.opencode/skills/git-commit/SKILL.md` |
 | `crafting-effective-readmes` | README templates | `.agents/skills/crafting-effective-readmes/SKILL.md` |
 
@@ -30,5 +31,6 @@ This file describes rules, patterns, and conventions for AI agents working on th
 | Implement database models | `backend-patterns` |
 | Add Docker configuration | `docker-expert` |
 | Use postgres database | `neon-postgres` |
+| Write Python tests, set up test suites, or implement testing best practices | `python-testing-patterns` |
 | Create git commit | `git-commit` |
 | Write or update README | `crafting-effective-readmes` |

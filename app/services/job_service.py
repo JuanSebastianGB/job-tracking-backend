@@ -106,3 +106,12 @@ async def delete_job(db: AsyncSession, job_id: int) -> bool:
     await db.commit()
 
     return True
+
+
+async def get_saved_jobs(db: AsyncSession) -> List[JobResponse]:
+    result = await db.execute(
+        select(Job).where(Job.status == "Saved").order_by(Job.date_applied.desc())
+    )
+    jobs = result.scalars().all()
+
+    return [_job_to_response(job) for job in jobs]

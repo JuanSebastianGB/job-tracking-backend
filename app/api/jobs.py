@@ -1,6 +1,8 @@
-from typing import List
+from datetime import date
+from typing import List, Optional
 
-from fastapi import APIRouter, Depends, HTTPException, status
+from fastapi import APIRouter, Depends, HTTPException, Query, status
+from fastapi.responses import Response
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from app.database import get_db
@@ -9,9 +11,11 @@ from app.services.job_service import (
     create_job,
     get_jobs,
     get_job,
+    get_saved_jobs,
     update_job,
     delete_job,
 )
+from app.services.export_service import generate_csv, generate_json
 
 jobs_router = APIRouter(prefix="/api/jobs", tags=["jobs"])
 
@@ -25,6 +29,32 @@ async def list_jobs(db: AsyncSession = Depends(get_db)):
 async def create_job_endpoint(job: JobCreate, db: AsyncSession = Depends(get_db)):
     created_job = await create_job(db, job)
     return {"id": created_job.id}
+
+
+@jobs_router.get("/export")
+async def export_jobs(
+    format: Optional[str] = Query(None, description="Export format: csv or json"),
+    db: AsyncSession = Depends(get_db),
+):
+    if not format or format not in ("csv", "json"):
+        raise HTTPException(
+            status_code=status.HTTP_400_BAD_REQUEST,
+            detail="Format is required and must be 'csv' or 'json'.",
+        )
+    jobs = await get_saved_jobs(db)
+    today = date.today().isoformat()
+    filename = f"saved-jobs-{today}.{format}"
+    if format == "csv":
+        content = generate_csv(jobs)
+        media_type = "text/csv; charset=utf-8"
+    else:
+        content = generate_json(jobs)
+        media_type = "application/json"
+    return Response(
+        content=content,
+        media_type=media_type,
+        headers={"Content-Disposition": f"attachment; filename={filename}"},
+    )
 
 
 @jobs_router.get("/{job_id}", response_model=JobResponse)
